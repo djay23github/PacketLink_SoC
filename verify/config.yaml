@@ -1,0 +1,178 @@
+# Basics
+DESIGN_NAME: packetlink_soc_top
+VERILOG_FILES:
+  - dir::src/*.v
+VERILOG_POWER_DEFINE: USE_POWER_PINS
+CLOCK_PORT:
+  - uart_clk
+  - serdes_clk
+CLOCK_PERIOD: 5.0
+PNR_SDC_FILE: dir::src/packetlink_soc_impl.sdc
+SIGNOFF_SDC_FILE: dir::src/packetlink_soc_signoff.sdc
+STA_MACRO_PRIORITIZE_NL: false
+
+# PDN
+VDD_NETS:
+  - VPWR
+GND_NETS:
+  - VGND
+PDN_VOFFSET: 10
+PDN_HOFFSET: 10
+PDN_VWIDTH: 2
+PDN_HWIDTH: 2
+PDN_VPITCH: 35
+PDN_HPITCH: 35
+PDN_SKIPTRIM: true
+
+# Pin Order
+IO_PIN_ORDER_CFG: dir::pin_order.cfg
+
+# Macro Views
+MACROS:
+  uart_top:
+    instances:
+      u_uart_top:
+        location: [35, 35] # south west side from the starting point of bbox
+        orientation: N
+    lef:
+      - dir::../uart/runs/area_2_holdfixes/final/lef/uart_top.lef
+    gds:
+      - dir::../uart/runs/area_2_holdfixes/final/gds/uart_top.gds
+    nl:
+      - dir::../uart/runs/area_2_holdfixes/final/nl/uart_top.nl.v
+    pnl:
+      - dir::../uart/runs/area_2_holdfixes/final/pnl/uart_top.pnl.v
+    spef:
+      nom_*:
+        - dir::../uart/runs/area_2_holdfixes/final/spef/nom/uart_top.nom.spef
+      min_*:
+        - dir::../uart/runs/area_2_holdfixes/final/spef/min/uart_top.min.spef
+      max_*:
+        - dir::../uart/runs/area_2_holdfixes/final/spef/max/uart_top.max.spef
+    lib:
+      nom_tt_025C_1v80:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/nom_tt_025C_1v80/uart_top__nom_tt_025C_1v80.lib
+      nom_ss_100C_1v60:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/nom_ss_100C_1v60/uart_top__nom_ss_100C_1v60.lib
+      nom_ff_n40C_1v95:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/nom_ff_n40C_1v95/uart_top__nom_ff_n40C_1v95.lib
+      min_tt_025C_1v80:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/min_tt_025C_1v80/uart_top__min_tt_025C_1v80.lib
+      min_ss_100C_1v60:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/min_ss_100C_1v60/uart_top__min_ss_100C_1v60.lib
+      min_ff_n40C_1v95:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/min_ff_n40C_1v95/uart_top__min_ff_n40C_1v95.lib
+      max_tt_025C_1v80:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/max_tt_025C_1v80/uart_top__max_tt_025C_1v80.lib
+      max_ss_100C_1v60:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/max_ss_100C_1v60/uart_top__max_ss_100C_1v60.lib
+      max_ff_n40C_1v95:
+        - dir::../uart/runs/area_2_holdfixes/final/lib/max_ff_n40C_1v95/uart_top__max_ff_n40C_1v95.lib
+
+  serdes_top:
+    instances:
+      u_serdes_top:
+        location: [290, 35] # keep close to UART; matched the best setup_hold_fix_3 placement
+        orientation: N
+    lef:
+      - dir::../serdes/runs/serdes_final_run/final/lef/serdes_top.lef
+    gds:
+      - dir::../serdes/runs/serdes_final_run/final/gds/serdes_top.gds
+    nl:
+      - dir::../serdes/runs/serdes_final_run/final/nl/serdes_top.nl.v
+    pnl:
+      - dir::../serdes/runs/serdes_final_run/final/pnl/serdes_top.pnl.v
+    spef:
+      nom_*:
+        - dir::../serdes/runs/serdes_final_run/final/spef/nom/serdes_top.nom.spef
+      min_*:
+        - dir::../serdes/runs/serdes_final_run/final/spef/min/serdes_top.min.spef
+      max_*:
+        - dir::../serdes/runs/serdes_final_run/final/spef/max/serdes_top.max.spef
+    lib:
+      nom_tt_025C_1v80:
+        - dir::../serdes/runs/serdes_final_run/final/lib/nom_tt_025C_1v80/serdes_top__nom_tt_025C_1v80.lib
+      nom_ss_100C_1v60:
+        - dir::../serdes/runs/serdes_final_run/final/lib/nom_ss_100C_1v60/serdes_top__nom_ss_100C_1v60.lib
+      nom_ff_n40C_1v95:
+        - dir::../serdes/runs/serdes_final_run/final/lib/nom_ff_n40C_1v95/serdes_top__nom_ff_n40C_1v95.lib
+      min_tt_025C_1v80:
+        - dir::../serdes/runs/serdes_final_run/final/lib/min_tt_025C_1v80/serdes_top__min_tt_025C_1v80.lib
+      min_ss_100C_1v60:
+        - dir::../serdes/runs/serdes_final_run/final/lib/min_ss_100C_1v60/serdes_top__min_ss_100C_1v60.lib
+      min_ff_n40C_1v95:
+        - dir::../serdes/runs/serdes_final_run/final/lib/min_ff_n40C_1v95/serdes_top__min_ff_n40C_1v95.lib
+      max_tt_025C_1v80:
+        - dir::../serdes/runs/serdes_final_run/final/lib/max_tt_025C_1v80/serdes_top__max_tt_025C_1v80.lib
+      max_ss_100C_1v60:
+        - dir::../serdes/runs/serdes_final_run/final/lib/max_ss_100C_1v60/serdes_top__max_ss_100C_1v60.lib
+      max_ff_n40C_1v95:
+        - dir::../serdes/runs/serdes_final_run/final/lib/max_ff_n40C_1v95/serdes_top__max_ff_n40C_1v95.lib
+
+# Synthesis
+SYNTH_STRATEGY: AREA 3
+SYNTH_ABC_BUFFERING: true
+SYNTH_SIZING: true
+
+# Timing / Optimization
+IO_DELAY_CONSTRAINT: 20
+MAX_FANOUT_CONSTRAINT: 14
+MAX_TRANSITION_CONSTRAINT: 0.5
+OUTPUT_CAP_LOAD: 30
+TIME_DERATING_CONSTRAINT: 10
+CLOCK_UNCERTAINTY_CONSTRAINT: 0.15
+CLOCK_TRANSITION_CONSTRAINT: 0.15
+
+CTS_APPLY_NDR: full
+
+
+FP_CORE_UTIL: 40
+PL_TARGET_DENSITY_PCT: 48
+PL_TIMING_DRIVEN: true
+RUN_POST_CTS_RESIZER_TIMING: true
+RUN_POST_GRT_RESIZER_TIMING: true
+DESIGN_REPAIR_MAX_SLEW_PCT: 40
+DESIGN_REPAIR_MAX_CAP_PCT: 20
+FP_SIZING: absolute
+DIE_AREA: [0, 0, 500, 500]
+CORE_AREA: [5, 10, 490, 495]
+FP_MACRO_HORIZONTAL_HALO: 10
+FP_MACRO_VERTICAL_HALO: 10
+PDN_CONNECT_MACROS_TO_GRID: true
+PDN_MACRO_CONNECTIONS:
+  - "u_uart_top VPWR VGND VPWR VGND"
+  - "u_serdes_top VPWR VGND VPWR VGND"
+
+GPL_CELL_PADDING: 2
+DPL_CELL_PADDING: 1
+
+
+PL_RESIZER_SETUP_SLACK_MARGIN: 0.50
+PL_RESIZER_HOLD_SLACK_MARGIN: 0.05
+PL_RESIZER_SETUP_MAX_BUFFER_PCT: 100
+PL_RESIZER_HOLD_MAX_BUFFER_PCT: 40
+PL_RESIZER_SETUP_MAX_UTIL_PCT: 90
+PL_RESIZER_HOLD_MAX_UTIL_PCT: 65
+PL_RESIZER_SETUP_REPAIR_TNS_PCT: 100
+PL_RESIZER_HOLD_REPAIR_TNS_PCT: 100
+
+
+GRT_RESIZER_SETUP_SLACK_MARGIN: 0.50
+GRT_RESIZER_HOLD_SLACK_MARGIN: 0.05
+GRT_RESIZER_SETUP_MAX_BUFFER_PCT: 100
+GRT_RESIZER_HOLD_MAX_BUFFER_PCT: 40
+GRT_RESIZER_SETUP_MAX_UTIL_PCT: 90
+GRT_RESIZER_HOLD_MAX_UTIL_PCT: 65
+GRT_RESIZER_SETUP_REPAIR_TNS_PCT: 100
+GRT_RESIZER_HOLD_REPAIR_TNS_PCT: 100
+
+
+SYNTH_DRIVING_CELL: sky130_fd_sc_hd__inv_4/Y
+SYNTH_CLK_DRIVING_CELL: sky130_fd_sc_hd__clkinv_4/Y
+SYNTH_BUFFER_CELL: sky130_fd_sc_hd__buf_4/A/X
+
+CTS_CLK_BUFFERS:
+  - sky130_fd_sc_hd__clkbuf_2
+  - sky130_fd_sc_hd__clkbuf_4
+  - sky130_fd_sc_hd__clkbuf_8
+  - sky130_fd_sc_hd__clkbuf_16
