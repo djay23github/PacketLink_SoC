@@ -313,6 +313,11 @@ paths below if needed.
 
 ![Final layout](docs/images/final_layout.png)
 
+### Final Layout (more packed with relative fp sizing meeting timing and utilization targets)
+
+![Final layout](docs/images/betterlayoutpacked.png)
+
+
 ### Critical Path
 
 ![Critical path](docs/images/criticalpath.png)
