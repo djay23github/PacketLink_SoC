@@ -304,10 +304,7 @@ max_ff_n40C_1v95: +0.0859 ns
 | Worst VGND voltage | `0.225517 mV` |
 | Worst VGND drop | `0.225517 mV` |
 
-## Final Layout and Analysis Images
-
-Add generated GUI screenshots or report images in `docs/images/` and update the
-paths below if needed.
+## Analysis Images
 
 ### Final Layout
 
